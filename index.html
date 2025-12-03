@@ -457,48 +457,6 @@
         }
 
         /* AIDE CARDS */
-        .aide-card {
-            background: #fafafa;
-            border-left: 5px solid var(--vert-ml);
-            border-radius: 10px;
-            padding: 18px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid rgba(23, 23, 24, 0.12);
-            border-left: 5px solid var(--vert-ml);
-        }
-
-        .aide-card:hover {
-            transform: translateX(5px);
-            box-shadow: var(--ombre-legere);
-            border-color: var(--vert-ml);
-            background: white;
-        }
-
-        .aide-card.active {
-            background: #f5fbf1;
-            border-color: var(--vert-ml);
-            box-shadow: 0 3px 12px rgba(149, 193, 31, 0.2);
-        }
-
-        .aide-name {
-            font-weight: 800;
-            font-size: 1.1em;
-            margin-bottom: 8px;
-            color: var(--noir-ml);
-        }
-
-        .aide-checkbox {
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
-            accent-color: var(--vert-ml);
-        }
 
         /* ADVICE BOX */
         .advice {
@@ -836,110 +794,80 @@
             </div>
 
             <p style="color: var(--gris-fonce); margin-bottom: 20px; line-height: 1.7;">
-                <strong>Coche les aides que tu peux obtenir.</strong> Ton conseiller Mission Locale t'aide à monter les dossiers ! Tu peux ajuster les montants selon ta situation.
+                <strong>Remplis les montants des aides que tu peux obtenir.</strong> Ton conseiller Mission Locale t'aide à monter les dossiers ! Laisse à 0 si tu n'as pas l'aide.
             </p>
 
             <!-- CEJ -->
-            <!-- CEJ -->
-            <div class="aide-card" id="card-cej" onclick="toggleAide('cej')">
-                <div style="flex: 1;">
-                    <div class="aide-name">🎯 CEJ</div>
-                    <div class="input-group" style="margin: 10px 0 0 0;">
-                        <div class="input-wrapper" style="max-width: 200px;">
-                            <input type="number" id="montant_cej" value="500" min="0" max="1000" step="50" 
-                                   style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="calculate()" 
-                                   onclick="event.stopPropagation()">
-                            <span class="input-addon" style="font-size: 0.9em;">€/mois</span>
-                        </div>
-                    </div>
+            <div class="input-group">
+                <div class="input-label">
+                    <span>🎯</span>
+                    <span>CEJ (Contrat Engagement Jeune)</span>
                 </div>
-                <input type="checkbox" id="aide_cej" class="aide-checkbox" onclick="event.stopPropagation(); toggleAide('cej'); calculate()">
+                <div class="input-wrapper">
+                    <input type="number" id="aide_cej" value="0" min="0" max="1000" step="50" oninput="calculate()">
+                    <span class="input-addon">€/mois</span>
+                </div>
             </div>
 
             <!-- PACEA -->
-            <div class="aide-card" id="card-pacea" onclick="toggleAide('pacea')">
-                <div style="flex: 1;">
-                    <div class="aide-name">🤝 PACEA</div>
-                    <div class="input-group" style="margin: 10px 0 0 0;">
-                        <div class="input-wrapper" style="max-width: 200px;">
-                            <input type="number" id="montant_pacea" value="200" min="0" max="500" step="50" 
-                                   style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="calculate()" 
-                                   onclick="event.stopPropagation()">
-                            <span class="input-addon" style="font-size: 0.9em;">€/mois</span>
-                        </div>
-                    </div>
+            <div class="input-group">
+                <div class="input-label">
+                    <span>🤝</span>
+                    <span>PACEA (Parcours Accompagnement)</span>
                 </div>
-                <input type="checkbox" id="aide_pacea" class="aide-checkbox" onclick="event.stopPropagation(); toggleAide('pacea'); calculate()">
+                <div class="input-wrapper">
+                    <input type="number" id="aide_pacea" value="0" min="0" max="500" step="50" oninput="calculate()">
+                    <span class="input-addon">€/mois</span>
+                </div>
             </div>
 
             <!-- ARE -->
-            <div class="aide-card" id="card-are" onclick="toggleAide('are')">
-                <div style="flex: 1;">
-                    <div class="aide-name">📋 Pôle Emploi</div>
-                    <div class="input-group" style="margin: 10px 0 0 0;">
-                        <div class="input-wrapper" style="max-width: 200px;">
-                            <input type="number" id="montant_are" value="900" min="0" max="3000" step="50" 
-                                   style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="calculate()" 
-                                   onclick="event.stopPropagation()">
-                            <span class="input-addon" style="font-size: 0.9em;">€/mois</span>
-                        </div>
-                    </div>
+            <div class="input-group">
+                <div class="input-label">
+                    <span>📋</span>
+                    <span>Pôle Emploi (ARE)</span>
                 </div>
-                <input type="checkbox" id="aide_are" class="aide-checkbox" onclick="event.stopPropagation(); toggleAide('are'); calculate()">
+                <div class="input-wrapper">
+                    <input type="number" id="aide_are" value="0" min="0" max="3000" step="50" oninput="calculate()">
+                    <span class="input-addon">€/mois</span>
+                </div>
             </div>
 
-            <!-- Erasmus -->
-            <div class="aide-card" id="card-erasmus" onclick="toggleAide('erasmus')">
-                <div style="flex: 1;">
-                    <div class="aide-name">🇪🇺 Erasmus+</div>
-                    <div class="input-group" style="margin: 10px 0 0 0;">
-                        <div class="input-wrapper" style="max-width: 200px;">
-                            <input type="number" id="montant_erasmus" value="250" min="0" max="500" step="50" 
-                                   style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="calculate()" 
-                                   onclick="event.stopPropagation()">
-                            <span class="input-addon" style="font-size: 0.9em;">€/mois</span>
-                        </div>
-                    </div>
+            <!-- Erasmus+ -->
+            <div class="input-group">
+                <div class="input-label">
+                    <span>🇪🇺</span>
+                    <span>Erasmus+</span>
                 </div>
-                <input type="checkbox" id="aide_erasmus" class="aide-checkbox" onclick="event.stopPropagation(); toggleAide('erasmus'); calculate()">
+                <div class="input-wrapper">
+                    <input type="number" id="aide_erasmus" value="0" min="0" max="500" step="50" oninput="calculate()">
+                    <span class="input-addon">€/mois</span>
+                </div>
             </div>
 
-            <!-- Région -->
-            <div class="aide-card" id="card-region" onclick="toggleAide('region')">
-                <div style="flex: 1;">
-                    <div class="aide-name">🏛️ Aide Régionale</div>
-                    <div class="input-group" style="margin: 10px 0 0 0;">
-                        <div class="input-wrapper" style="max-width: 200px;">
-                            <input type="number" id="montant_region" value="100" min="0" max="300" step="25" 
-                                   style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="calculate()" 
-                                   onclick="event.stopPropagation()">
-                            <span class="input-addon" style="font-size: 0.9em;">€/mois</span>
-                        </div>
-                    </div>
+            <!-- Aide Régionale -->
+            <div class="input-group">
+                <div class="input-label">
+                    <span>🏛️</span>
+                    <span>Aide Régionale</span>
                 </div>
-                <input type="checkbox" id="aide_region" class="aide-checkbox" onclick="event.stopPropagation(); toggleAide('region'); calculate()">
+                <div class="input-wrapper">
+                    <input type="number" id="aide_region" value="0" min="0" max="300" step="25" oninput="calculate()">
+                    <span class="input-addon">€/mois</span>
+                </div>
             </div>
 
-            <!-- ML -->
-            <div class="aide-card" id="card-ml" onclick="toggleAide('ml')">
-                <div style="flex: 1;">
-                    <div class="aide-name">🎓 Mission Locale</div>
-                    <div class="input-group" style="margin: 10px 0 0 0;">
-                        <div class="input-wrapper" style="max-width: 200px;">
-                            <input type="number" id="montant_ml" value="150" min="0" max="500" step="50" 
-                                   style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="calculate()" 
-                                   onclick="event.stopPropagation()">
-                            <span class="input-addon" style="font-size: 0.9em;">€ ponct.</span>
-                        </div>
-                    </div>
+            <!-- Mission Locale -->
+            <div class="input-group">
+                <div class="input-label">
+                    <span>🎓</span>
+                    <span>Aide Mission Locale (ponctuelle)</span>
                 </div>
-                <input type="checkbox" id="aide_ml" class="aide-checkbox" onclick="event.stopPropagation(); toggleAide('ml'); calculate()">
+                <div class="input-wrapper">
+                    <input type="number" id="aide_ml" value="0" min="0" max="500" step="50" oninput="calculate()">
+                    <span class="input-addon">€ ponct.</span>
+                </div>
+                <small style="color: var(--gris-fonce); margin-top: 5px; display: block;">Sera répartie sur 3 mois</small>
             </div>
 
             <button class="action-btn primary" onclick="closeModal('aides')" style="width: 100%; margin-top: 20px;">
@@ -994,20 +922,6 @@
         }
 
         // Toggle aide card
-        function toggleAide(aideId) {
-            const checkbox = document.getElementById('aide_' + aideId);
-            checkbox.checked = !checkbox.checked;
-            
-            const card = document.getElementById('card-' + aideId);
-            if (checkbox.checked) {
-                card.classList.add('active');
-            } else {
-                card.classList.remove('active');
-            }
-            
-            calculate();
-        }
-
         // Calculate budget
         function calculate() {
             // Get revenus
@@ -1027,28 +941,15 @@
             
             const totalDepenses = logement + alimentation + transport + telephone + loisirs;
             
-            // Get aides
-            let totalAides = 0;
+            // Get aides (directement depuis les inputs)
+            const aideCej = parseFloat(document.getElementById('aide_cej').value) || 0;
+            const aidePacea = parseFloat(document.getElementById('aide_pacea').value) || 0;
+            const aideAre = parseFloat(document.getElementById('aide_are').value) || 0;
+            const aideErasmus = parseFloat(document.getElementById('aide_erasmus').value) || 0;
+            const aideRegion = parseFloat(document.getElementById('aide_region').value) || 0;
+            const aideMl = parseFloat(document.getElementById('aide_ml').value) || 0;
             
-            if (document.getElementById('aide_cej').checked) {
-                totalAides += parseFloat(document.getElementById('montant_cej').value) || 0;
-            }
-            if (document.getElementById('aide_pacea').checked) {
-                totalAides += parseFloat(document.getElementById('montant_pacea').value) || 0;
-            }
-            if (document.getElementById('aide_are').checked) {
-                totalAides += parseFloat(document.getElementById('montant_are').value) || 0;
-            }
-            if (document.getElementById('aide_erasmus').checked) {
-                totalAides += parseFloat(document.getElementById('montant_erasmus').value) || 0;
-            }
-            if (document.getElementById('aide_region').checked) {
-                totalAides += parseFloat(document.getElementById('montant_region').value) || 0;
-            }
-            if (document.getElementById('aide_ml').checked) {
-                const montantML = parseFloat(document.getElementById('montant_ml').value) || 0;
-                totalAides += montantML / 3;
-            }
+            const totalAides = aideCej + aidePacea + aideAre + aideErasmus + aideRegion + (aideMl / 3);
             
             // Calculate reste
             const reste = totalRevenus + totalAides - totalDepenses;
@@ -1160,18 +1061,12 @@
                 transport: document.getElementById('transport').value,
                 telephone: document.getElementById('telephone').value,
                 loisirs: document.getElementById('loisirs').value,
-                aide_cej: document.getElementById('aide_cej').checked,
-                montant_cej: document.getElementById('montant_cej').value,
-                aide_pacea: document.getElementById('aide_pacea').checked,
-                montant_pacea: document.getElementById('montant_pacea').value,
-                aide_are: document.getElementById('aide_are').checked,
-                montant_are: document.getElementById('montant_are').value,
-                aide_erasmus: document.getElementById('aide_erasmus').checked,
-                montant_erasmus: document.getElementById('montant_erasmus').value,
-                aide_region: document.getElementById('aide_region').checked,
-                montant_region: document.getElementById('montant_region').value,
-                aide_ml: document.getElementById('aide_ml').checked,
-                montant_ml: document.getElementById('montant_ml').value,
+                aide_cej: document.getElementById('aide_cej').value,
+                aide_pacea: document.getElementById('aide_pacea').value,
+                aide_are: document.getElementById('aide_are').value,
+                aide_erasmus: document.getElementById('aide_erasmus').value,
+                aide_region: document.getElementById('aide_region').value,
+                aide_ml: document.getElementById('aide_ml').value,
                 date: new Date().toLocaleDateString('fr-FR')
             };
             
@@ -1195,41 +1090,12 @@
                     if (data.telephone) document.getElementById('telephone').value = data.telephone;
                     if (data.loisirs) document.getElementById('loisirs').value = data.loisirs;
                     
-                    if (data.aide_cej !== undefined) {
-                        document.getElementById('aide_cej').checked = data.aide_cej;
-                        if (data.aide_cej) document.getElementById('card-cej').classList.add('active');
-                    }
-                    if (data.montant_cej) document.getElementById('montant_cej').value = data.montant_cej;
-                    
-                    if (data.aide_pacea !== undefined) {
-                        document.getElementById('aide_pacea').checked = data.aide_pacea;
-                        if (data.aide_pacea) document.getElementById('card-pacea').classList.add('active');
-                    }
-                    if (data.montant_pacea) document.getElementById('montant_pacea').value = data.montant_pacea;
-                    
-                    if (data.aide_are !== undefined) {
-                        document.getElementById('aide_are').checked = data.aide_are;
-                        if (data.aide_are) document.getElementById('card-are').classList.add('active');
-                    }
-                    if (data.montant_are) document.getElementById('montant_are').value = data.montant_are;
-                    
-                    if (data.aide_erasmus !== undefined) {
-                        document.getElementById('aide_erasmus').checked = data.aide_erasmus;
-                        if (data.aide_erasmus) document.getElementById('card-erasmus').classList.add('active');
-                    }
-                    if (data.montant_erasmus) document.getElementById('montant_erasmus').value = data.montant_erasmus;
-                    
-                    if (data.aide_region !== undefined) {
-                        document.getElementById('aide_region').checked = data.aide_region;
-                        if (data.aide_region) document.getElementById('card-region').classList.add('active');
-                    }
-                    if (data.montant_region) document.getElementById('montant_region').value = data.montant_region;
-                    
-                    if (data.aide_ml !== undefined) {
-                        document.getElementById('aide_ml').checked = data.aide_ml;
-                        if (data.aide_ml) document.getElementById('card-ml').classList.add('active');
-                    }
-                    if (data.montant_ml) document.getElementById('montant_ml').value = data.montant_ml;
+                    if (data.aide_cej !== undefined) document.getElementById('aide_cej').value = data.aide_cej;
+                    if (data.aide_pacea !== undefined) document.getElementById('aide_pacea').value = data.aide_pacea;
+                    if (data.aide_are !== undefined) document.getElementById('aide_are').value = data.aide_are;
+                    if (data.aide_erasmus !== undefined) document.getElementById('aide_erasmus').value = data.aide_erasmus;
+                    if (data.aide_region !== undefined) document.getElementById('aide_region').value = data.aide_region;
+                    if (data.aide_ml !== undefined) document.getElementById('aide_ml').value = data.aide_ml;
                     
                     console.log('✅ Budget chargé depuis le', data.date);
                 } catch (e) {
@@ -1242,24 +1108,7 @@
         function resetAll() {
             if (confirm('Es-tu sûr·e de vouloir tout effacer ?')) {
                 document.querySelectorAll('input[type="number"]').forEach(input => {
-                    if (input.id.startsWith('montant_')) {
-                        if (input.id === 'montant_cej') input.value = 500;
-                        else if (input.id === 'montant_pacea') input.value = 200;
-                        else if (input.id === 'montant_are') input.value = 900;
-                        else if (input.id === 'montant_erasmus') input.value = 250;
-                        else if (input.id === 'montant_region') input.value = 100;
-                        else if (input.id === 'montant_ml') input.value = 150;
-                    } else {
-                        input.value = 0;
-                    }
-                });
-                
-                document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                    checkbox.checked = false;
-                });
-                
-                document.querySelectorAll('.aide-card').forEach(card => {
-                    card.classList.remove('active');
+                    input.value = 0;
                 });
                 
                 calculate();
