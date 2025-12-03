@@ -840,7 +840,8 @@
             </p>
 
             <!-- CEJ -->
-            <div class="aide-card" id="card-cej">
+            <!-- CEJ -->
+            <div class="aide-card" id="card-cej" onclick="toggleAide('cej')">
                 <div style="flex: 1;">
                     <div class="aide-name">🎯 CEJ</div>
                     <div class="input-group" style="margin: 10px 0 0 0;">
@@ -857,7 +858,7 @@
             </div>
 
             <!-- PACEA -->
-            <div class="aide-card" id="card-pacea">
+            <div class="aide-card" id="card-pacea" onclick="toggleAide('pacea')">
                 <div style="flex: 1;">
                     <div class="aide-name">🤝 PACEA</div>
                     <div class="input-group" style="margin: 10px 0 0 0;">
@@ -874,7 +875,7 @@
             </div>
 
             <!-- ARE -->
-            <div class="aide-card" id="card-are">
+            <div class="aide-card" id="card-are" onclick="toggleAide('are')">
                 <div style="flex: 1;">
                     <div class="aide-name">📋 Pôle Emploi</div>
                     <div class="input-group" style="margin: 10px 0 0 0;">
@@ -891,7 +892,7 @@
             </div>
 
             <!-- Erasmus -->
-            <div class="aide-card" id="card-erasmus">
+            <div class="aide-card" id="card-erasmus" onclick="toggleAide('erasmus')">
                 <div style="flex: 1;">
                     <div class="aide-name">🇪🇺 Erasmus+</div>
                     <div class="input-group" style="margin: 10px 0 0 0;">
@@ -908,7 +909,7 @@
             </div>
 
             <!-- Région -->
-            <div class="aide-card" id="card-region">
+            <div class="aide-card" id="card-region" onclick="toggleAide('region')">
                 <div style="flex: 1;">
                     <div class="aide-name">🏛️ Aide Régionale</div>
                     <div class="input-group" style="margin: 10px 0 0 0;">
@@ -925,7 +926,7 @@
             </div>
 
             <!-- ML -->
-            <div class="aide-card" id="card-ml">
+            <div class="aide-card" id="card-ml" onclick="toggleAide('ml')">
                 <div style="flex: 1;">
                     <div class="aide-name">🎓 Mission Locale</div>
                     <div class="input-group" style="margin: 10px 0 0 0;">
@@ -1269,7 +1270,7 @@
         // Contact conseiller
         function contactConseiller() {
             const reste = document.getElementById('display-reste').textContent;
-            window.location.href = `mailto:mobilite@missionlocale-paysbasque.fr?subject=Besoin d'aide pour mon budget mobilité&body=Bonjour,%0D%0A%0D%0AJ'ai calculé mon budget mobilité et j'ai un reste à vivre de ${reste} par mois.%0D%0A%0D%0AJe souhaite être accompagné·e.%0D%0A%0D%0AMerci.`;
+            window.location.href = `mailto:?subject=Besoin d'aide pour mon budget mobilité&body=Bonjour,%0D%0A%0D%0AJ'ai calculé mon budget mobilité et j'ai un reste à vivre de ${reste} par mois.%0D%0A%0D%0AJe souhaite être accompagné·e.%0D%0A%0D%0AMerci.`;
         }
 
         // Close modal on outside click
