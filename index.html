@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma Calculatrice Budget Mobilité</title>
+    <title>Calculateur Budget Mobilité - Mission Locale Pays Basque</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Charte graphique Mission Locale Pays Basque */
+        /* CHARTE GRAPHIQUE MISSION LOCALE PAYS BASQUE */
         :root {
+            /* Palette officielle */
             --orange-ml: #f39200;
             --vert-ml: #95c11f;
             --bleu-ml: #2897d5;
@@ -14,8 +18,16 @@
             --violet-ml: #a3195b;
             --rouge-ml: #9f3d3f;
             --noir-ml: #171718;
-            --gris-clair: #f5f5f5;
-            --gris-moyen: #e0e0e0;
+            
+            /* Nuances */
+            --gris-clair: #f7f7f7;
+            --gris-moyen: #e5e5e5;
+            --gris-fonce: #666666;
+            
+            /* Ombres */
+            --ombre-legere: 0 2px 8px rgba(23, 23, 24, 0.08);
+            --ombre-moyenne: 0 4px 15px rgba(23, 23, 24, 0.12);
+            --ombre-forte: 0 8px 25px rgba(23, 23, 24, 0.18);
         }
 
         * {
@@ -25,27 +37,31 @@
         }
 
         body {
-            font-family: 'Muli', 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ffffff 0%, var(--gris-clair) 100%);
+            font-family: 'Mukta', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
+            padding: 0;
             color: var(--noir-ml);
+            line-height: 1.6;
         }
 
-        /* Header avec logo */
+        /* HEADER avec logo */
         .header-ml {
-            width: 100%;
+            background: white;
+            padding: 15px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border-bottom: 3px solid var(--bleu-ml);
+            border: 1px solid rgba(23, 23, 24, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .header-content {
             max-width: 1200px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(23, 23, 24, 0.1);
+            gap: 20px;
         }
 
         .logo-ml {
@@ -53,58 +69,96 @@
             width: auto;
         }
 
-        .header-title {
-            font-family: 'Politica', 'Arial', sans-serif;
-            font-size: 1.3em;
-            font-weight: 700;
-            color: var(--noir-ml);
+        .header-text {
             text-align: right;
         }
 
-        .header-subtitle {
-            font-family: 'Muli', 'Arial', sans-serif;
-            font-size: 0.9em;
-            color: var(--bleu-ml);
-            margin-top: 3px;
+        .header-title {
+            font-size: 1.4em;
+            font-weight: 800;
+            color: var(--noir-ml);
+            margin-bottom: 2px;
         }
 
-        /* Main container */
+        .header-subtitle {
+            font-size: 0.95em;
+            color: var(--bleu-ml);
+            font-weight: 600;
+        }
+
+        /* MAIN CONTAINER */
         .main-wrapper {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
         }
 
         .calculator-container {
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 35px;
-            box-shadow: 0 4px 20px rgba(23, 23, 24, 0.15);
-            max-width: 500px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+            max-width: 550px;
             width: 100%;
-            border-top: 5px solid var(--bleu-ml);
+            border-top: 6px solid var(--bleu-ml);
+            border: 1px solid rgba(23, 23, 24, 0.15);
+            border-top: 6px solid var(--bleu-ml);
         }
 
-        /* Screen/Display */
-        .display {
-            background: var(--gris-clair);
+        /* RESULT DISPLAY (écran principal) */
+        .result-display {
+            background: linear-gradient(135deg, var(--bleu-ml), #1c7ab5);
             border-radius: 12px;
             padding: 25px;
+            text-align: center;
             margin-bottom: 25px;
-            border: 2px solid var(--gris-moyen);
+            box-shadow: var(--ombre-moyenne);
+        }
+
+        .result-label {
+            color: white;
+            font-size: 0.95em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            opacity: 0.95;
+        }
+
+        .result-value {
+            color: white;
+            font-size: 3.5em;
+            font-weight: 900;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            letter-spacing: -1px;
+        }
+
+        .result-subtext {
+            color: white;
+            font-size: 0.95em;
+            margin-top: 10px;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        /* INFO DISPLAY (4 indicateurs) */
+        .display {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(23, 23, 24, 0.12);
         }
 
         .display-title {
-            font-family: 'Akrobat', 'Arial', sans-serif;
             color: var(--bleu-ml);
             font-size: 1em;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
+            letter-spacing: 1.2px;
+            margin-bottom: 18px;
             text-align: center;
         }
 
@@ -112,21 +166,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 15px;
+            padding: 13px 16px;
             background: white;
             border-radius: 8px;
             margin-bottom: 10px;
-            border-left: 4px solid var(--bleu-ml);
+            border-left: 5px solid var(--bleu-ml);
+            border: 1px solid rgba(23, 23, 24, 0.08);
+            border-left: 5px solid var(--bleu-ml);
+            transition: all 0.3s;
+        }
+
+        .display-row:hover {
+            transform: translateX(3px);
+            box-shadow: var(--ombre-legere);
         }
 
         .display-row:last-child {
             margin-bottom: 0;
             border-left-color: var(--orange-ml);
-            background: rgba(243, 146, 0, 0.05);
+            background: #fef9f3;
         }
 
         .display-label {
-            font-family: 'Muli', 'Arial', sans-serif;
             color: var(--noir-ml);
             font-size: 0.95em;
             font-weight: 600;
@@ -136,9 +197,8 @@
         }
 
         .display-value {
-            font-family: 'Akrobat', 'Arial', sans-serif;
             color: var(--noir-ml);
-            font-size: 1.4em;
+            font-size: 1.5em;
             font-weight: 900;
             text-align: right;
         }
@@ -155,57 +215,20 @@
             color: var(--orange-ml);
         }
 
-        /* Main result */
-        .result-display {
-            background: linear-gradient(135deg, var(--bleu-ml), #1c7ab5);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(40, 151, 213, 0.3);
-        }
-
-        .result-label {
-            font-family: 'Akrobat', 'Arial', sans-serif;
-            color: white;
-            font-size: 0.9em;
-            font-weight: 700;
-            text-transform: uppercase;
-            opacity: 0.95;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .result-value {
-            font-family: 'Akrobat', 'Arial', sans-serif;
-            color: white;
-            font-size: 3em;
-            font-weight: 900;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-
-        .result-subtext {
-            font-family: 'Muli', 'Arial', sans-serif;
-            color: white;
-            font-size: 0.9em;
-            opacity: 0.9;
-            margin-top: 8px;
-        }
-
-        /* Buttons grid */
+        /* BUTTONS GRID */
         .buttons-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 15px;
             margin-bottom: 20px;
         }
 
         .calc-button {
-            background: linear-gradient(135deg, #4A5568, #2D3748);
-            color: white;
-            border: 2px solid #4A5568;
-            padding: 20px 15px;
-            border-radius: 20px;
+            background: #fafafa;
+            color: var(--noir-ml);
+            border: 1px solid rgba(23, 23, 24, 0.15);
+            padding: 24px 15px;
+            border-radius: 10px;
             font-weight: 700;
             font-size: 1em;
             cursor: pointer;
@@ -213,14 +236,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            gap: 12px;
+            box-shadow: var(--ombre-legere);
         }
 
         .calc-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            border-color: var(--turquoise-doux);
+            box-shadow: var(--ombre-moyenne);
+            border-color: var(--bleu-ml);
+            background: white;
         }
 
         .calc-button:active {
@@ -228,21 +252,23 @@
         }
 
         .calc-button.active {
-            background: linear-gradient(135deg, var(--turquoise-doux), #26C6DA);
-            border-color: var(--turquoise-doux);
-            box-shadow: 0 8px 25px rgba(77, 208, 225, 0.4);
+            background: var(--bleu-ml);
+            color: white;
+            border-color: var(--bleu-ml);
+            box-shadow: 0 4px 15px rgba(40, 151, 213, 0.35);
         }
 
         .calc-button .icon {
-            font-size: 2em;
+            font-size: 2.8em;
         }
 
         .calc-button .label {
-            font-size: 0.85em;
+            font-size: 0.9em;
             text-align: center;
+            font-weight: 700;
         }
 
-        /* Action buttons */
+        /* ACTION BUTTONS */
         .action-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -250,39 +276,58 @@
         }
 
         .action-btn {
-            padding: 18px;
-            border: none;
-            border-radius: 20px;
+            padding: 17px;
+            border: 1px solid rgba(23, 23, 24, 0.15);
+            border-radius: 10px;
             font-weight: 700;
-            font-size: 1em;
+            font-size: 0.95em;
             cursor: pointer;
             transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
+            box-shadow: var(--ombre-legere);
         }
 
         .action-btn.primary {
-            background: linear-gradient(135deg, var(--vert-valide), #388E3C);
+            background: var(--vert-ml);
             color: white;
+            border-color: var(--vert-ml);
             grid-column: 1 / -1;
         }
 
+        .action-btn.primary:hover {
+            background: #7da919;
+            border-color: #7da919;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(149, 193, 31, 0.3);
+        }
+
         .action-btn.secondary {
-            background: linear-gradient(135deg, var(--jaune-vif), #FFC107);
-            color: #212121;
+            background: var(--orange-ml);
+            color: white;
+            border-color: var(--orange-ml);
+        }
+
+        .action-btn.secondary:hover {
+            background: #d97f00;
+            border-color: #d97f00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(243, 146, 0, 0.3);
         }
 
         .action-btn.reset {
-            background: linear-gradient(135deg, #E53935, var(--rouge-cerise));
-            color: white;
+            background: var(--gris-moyen);
+            color: var(--noir-ml);
+            border-color: rgba(23, 23, 24, 0.2);
         }
 
-        .action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        .action-btn.reset:hover {
+            background: #bdbdbd;
+            border-color: rgba(23, 23, 24, 0.3);
+            transform: translateY(-2px);
         }
 
-        /* Modal overlay */
+        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -290,7 +335,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(23, 23, 24, 0.85);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -303,13 +348,16 @@
 
         .modal-content {
             background: white;
-            border-radius: 30px;
-            padding: 40px 30px;
-            max-width: 500px;
+            border-radius: 12px;
+            padding: 35px 30px;
+            max-width: 550px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: var(--ombre-forte);
+            border-top: 6px solid var(--bleu-ml);
+            border: 1px solid rgba(23, 23, 24, 0.2);
+            border-top: 6px solid var(--bleu-ml);
         }
 
         .modal-header {
@@ -318,38 +366,40 @@
             align-items: center;
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 3px solid var(--turquoise-doux);
+            border-bottom: 3px solid var(--bleu-ml);
         }
 
         .modal-title {
             font-size: 1.8em;
             font-weight: 900;
-            color: var(--rouge-cerise);
+            color: var(--noir-ml);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .modal-close {
-            background: #E0E0E0;
+            background: var(--gris-moyen);
             border: none;
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            font-size: 1.5em;
+            font-size: 1.6em;
             cursor: pointer;
             transition: all 0.3s;
+            color: var(--noir-ml);
+            font-weight: 700;
         }
 
         .modal-close:hover {
-            background: var(--rouge-cerise);
+            background: var(--rose-ml);
             color: white;
             transform: rotate(90deg);
         }
 
-        /* Input groups */
+        /* INPUT GROUPS */
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .input-label {
@@ -357,39 +407,39 @@
             align-items: center;
             gap: 10px;
             font-weight: 700;
-            color: #2D3748;
+            color: var(--noir-ml);
             margin-bottom: 10px;
             font-size: 1.05em;
         }
 
         .input-label .icon {
-            font-size: 1.3em;
+            font-size: 1.4em;
         }
 
         .input-wrapper {
             display: flex;
             align-items: center;
-            background: #F5F5F5;
-            border-radius: 15px;
+            background: #fafafa;
+            border-radius: 10px;
             padding: 5px;
-            border: 2px solid #E0E0E0;
+            border: 1px solid rgba(23, 23, 24, 0.15);
             transition: all 0.3s;
         }
 
         .input-wrapper:focus-within {
-            border-color: var(--turquoise-doux);
-            box-shadow: 0 0 0 3px rgba(77, 208, 225, 0.1);
+            border-color: var(--bleu-ml);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(40, 151, 213, 0.1);
         }
 
         .input-wrapper input {
             flex: 1;
             border: none;
             background: transparent;
-            padding: 15px;
+            padding: 14px;
             font-size: 1.2em;
             font-weight: 700;
-            font-family: 'Courier New', monospace;
-            color: #2D3748;
+            color: var(--noir-ml);
         }
 
         .input-wrapper input:focus {
@@ -397,117 +447,140 @@
         }
 
         .input-addon {
-            background: var(--turquoise-doux);
+            background: var(--bleu-ml);
             color: white;
-            padding: 12px 20px;
-            border-radius: 12px;
+            padding: 12px 18px;
+            border-radius: 8px;
             font-weight: 700;
             margin-right: 5px;
+            font-size: 0.95em;
         }
 
-        /* Aide card */
+        /* AIDE CARDS */
         .aide-card {
-            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
-            border-left: 5px solid var(--vert-valide);
-            border-radius: 15px;
-            padding: 20px;
+            background: #fafafa;
+            border-left: 5px solid var(--vert-ml);
+            border-radius: 10px;
+            padding: 18px;
             margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 15px;
             cursor: pointer;
             transition: all 0.3s;
+            border: 1px solid rgba(23, 23, 24, 0.12);
+            border-left: 5px solid var(--vert-ml);
         }
 
         .aide-card:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
+            box-shadow: var(--ombre-legere);
+            border-color: var(--vert-ml);
+            background: white;
         }
 
         .aide-card.active {
-            background: linear-gradient(135deg, var(--vert-valide), #388E3C);
-            color: white;
-        }
-
-        .aide-card.disabled {
-            background: #F5F5F5;
-            border-left-color: #BDBDBD;
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .aide-info {
-            flex: 1;
+            background: #f5fbf1;
+            border-color: var(--vert-ml);
+            box-shadow: 0 3px 12px rgba(149, 193, 31, 0.2);
         }
 
         .aide-name {
             font-weight: 800;
             font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-
-        .aide-montant {
-            font-size: 1.5em;
-            font-weight: 900;
-            font-family: 'Courier New', monospace;
+            margin-bottom: 8px;
+            color: var(--noir-ml);
         }
 
         .aide-checkbox {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             cursor: pointer;
+            accent-color: var(--vert-ml);
         }
 
-        /* Advice box */
+        /* ADVICE BOX */
         .advice {
-            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
-            border-left: 5px solid #1976D2;
-            border-radius: 15px;
+            border-left: 5px solid var(--bleu-ml);
+            border-radius: 10px;
             padding: 20px;
             margin: 20px 0;
-            color: #0D47A1;
+            background: rgba(40, 151, 213, 0.06);
         }
 
         .advice.success {
-            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
-            border-left-color: var(--vert-valide);
-            color: #1B5E20;
+            background: rgba(149, 193, 31, 0.08);
+            border-left-color: var(--vert-ml);
         }
 
         .advice.warning {
-            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
-            border-left-color: #F57C00;
-            color: #E65100;
+            background: rgba(243, 146, 0, 0.08);
+            border-left-color: var(--orange-ml);
         }
 
         .advice.error {
-            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
-            border-left-color: var(--rouge-cerise);
-            color: #B71C1C;
+            background: rgba(214, 11, 82, 0.08);
+            border-left-color: var(--rose-ml);
         }
 
         .advice-title {
             font-weight: 800;
             font-size: 1.2em;
             margin-bottom: 10px;
+            color: var(--noir-ml);
         }
 
         .advice-text {
-            line-height: 1.6;
+            line-height: 1.7;
+            color: var(--gris-fonce);
         }
 
-        /* Responsive */
-        @media (max-width: 480px) {
+        /* FOOTER */
+        .footer-ml {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #b8c6d4;
+            font-size: 0.9em;
+        }
+
+        .footer-ml a {
+            color: #4dd0e1;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-ml a:hover {
+            text-decoration: underline;
+            color: #80e0ed;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-text {
+                text-align: center;
+            }
+
+            .logo-ml {
+                height: 40px;
+            }
+
             .calculator-container {
-                padding: 20px;
+                padding: 25px;
+            }
+
+            .result-value {
+                font-size: 2.8em;
             }
 
             .display-value {
                 font-size: 1.2em;
-            }
-
-            .result-value {
-                font-size: 2.5em;
             }
 
             .buttons-grid {
@@ -521,99 +594,119 @@
             .action-btn.primary {
                 grid-column: 1;
             }
+
+            .modal-content {
+                padding: 25px 20px;
+            }
         }
 
-        /* Loading animation */
+        /* LOADING ANIMATION */
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.02); }
         }
 
         .pulse {
-            animation: pulse 2s infinite;
+            animation: pulse 2s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
-    <div class="calculator-container">
-        <!-- Result Display (top) -->
-        <div class="result-display pulse">
-            <div class="result-label">💰 Mon Budget</div>
-            <div class="result-value" id="main-result">0 €</div>
-            <div class="result-subtext" id="result-status">Commence à calculer</div>
-        </div>
-
-        <!-- Info Display -->
-        <div class="display">
-            <div class="display-title">📊 Récapitulatif</div>
-            
-            <div class="display-row">
-                <div class="display-label">
-                    <span>💵</span>
-                    <span>Revenus</span>
-                </div>
-                <div class="display-value" id="display-revenus">0 €</div>
-            </div>
-
-            <div class="display-row">
-                <div class="display-label">
-                    <span>🎁</span>
-                    <span>Aides</span>
-                </div>
-                <div class="display-value" id="display-aides">0 €</div>
-            </div>
-
-            <div class="display-row">
-                <div class="display-label">
-                    <span>🛒</span>
-                    <span>Dépenses</span>
-                </div>
-                <div class="display-value" id="display-depenses">0 €</div>
-            </div>
-
-            <div class="display-row">
-                <div class="display-label">
-                    <span>⚖️</span>
-                    <span>Reste</span>
-                </div>
-                <div class="display-value" id="display-reste">0 €</div>
+    <!-- Header avec logo Mission Locale -->
+    <header class="header-ml">
+        <div class="header-content">
+            <img src="https://static.wixstatic.com/media/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif/v1/fill/w_224,h_60,al_c,q_80,enc_avif,quality_auto/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif" 
+                 alt="Mission Locale Pays Basque" 
+                 class="logo-ml">
+            <div class="header-text">
+                <div class="header-title">Calculateur Budget Mobilité</div>
+                <div class="header-subtitle">Prépare ton départ en toute sérénité</div>
             </div>
         </div>
+    </header>
 
-        <!-- Calculator Buttons -->
-        <div class="buttons-grid">
-            <button class="calc-button" onclick="openModal('revenus')">
-                <span class="icon">💵</span>
-                <span class="label">Mes revenus</span>
-            </button>
+    <!-- Main Calculator -->
+    <div class="main-wrapper">
+        <div class="calculator-container">
+            <!-- Result Display (écran principal) -->
+            <div class="result-display pulse">
+                <div class="result-label">💰 Mon Budget</div>
+                <div class="result-value" id="main-result">0 €</div>
+                <div class="result-subtext" id="result-status">Commence à calculer</div>
+            </div>
 
-            <button class="calc-button" onclick="openModal('depenses')">
-                <span class="icon">🛒</span>
-                <span class="label">Mes dépenses</span>
-            </button>
+            <!-- Info Display (4 indicateurs) -->
+            <div class="display">
+                <div class="display-title">📊 Récapitulatif</div>
+                
+                <div class="display-row">
+                    <div class="display-label">
+                        <span>💵</span>
+                        <span>Revenus</span>
+                    </div>
+                    <div class="display-value" id="display-revenus">0 €</div>
+                </div>
 
-            <button class="calc-button" onclick="openModal('aides')">
-                <span class="icon">🎁</span>
-                <span class="label">Mes aides</span>
-            </button>
+                <div class="display-row">
+                    <div class="display-label">
+                        <span>🤝</span>
+                        <span>Aides</span>
+                    </div>
+                    <div class="display-value" id="display-aides">0 €</div>
+                </div>
 
-            <button class="calc-button" onclick="openModal('resultat')">
-                <span class="icon">📊</span>
-                <span class="label">Voir détails</span>
-            </button>
-        </div>
+                <div class="display-row">
+                    <div class="display-label">
+                        <span>🛒</span>
+                        <span>Dépenses</span>
+                    </div>
+                    <div class="display-value" id="display-depenses">0 €</div>
+                </div>
 
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-            <button class="action-btn primary" onclick="saveBudget()">
-                💾 Sauvegarder
-            </button>
-            <button class="action-btn secondary" onclick="contactConseiller()">
-                💬 Conseiller
-            </button>
-            <button class="action-btn reset" onclick="resetAll()">
-                🔄 Reset
-            </button>
+                <div class="display-row">
+                    <div class="display-label">
+                        <span>⚖️</span>
+                        <span>Reste</span>
+                    </div>
+                    <div class="display-value" id="display-reste">0 €</div>
+                </div>
+            </div>
+
+            <!-- Calculator Buttons -->
+            <div class="buttons-grid">
+                <button class="calc-button" onclick="openModal('revenus')">
+                    <span class="icon">💵</span>
+                    <span class="label">Mes revenus</span>
+                </button>
+
+                <button class="calc-button" onclick="openModal('depenses')">
+                    <span class="icon">🛒</span>
+                    <span class="label">Mes dépenses</span>
+                </button>
+
+                <button class="calc-button" onclick="openModal('aides')">
+                    <span class="icon">🤝</span>
+                    <span class="label">Mes aides</span>
+                </button>
+
+                <button class="calc-button" onclick="openModal('resultat')">
+                    <span class="icon">📊</span>
+                    <span class="label">Voir détails</span>
+                </button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="saveBudget()">
+                    💾 Sauvegarder
+                </button>
+                <button class="action-btn secondary" onclick="contactConseiller()">
+                    💬 Conseiller
+                </button>
+                <button class="action-btn reset" onclick="resetAll()">
+                    🔄 Reset
+                </button>
+            </div>
         </div>
     </div>
 
@@ -656,6 +749,7 @@
                     <input type="number" id="epargne" value="0" min="0" step="50" oninput="calculate()">
                     <span class="input-addon">€ total</span>
                 </div>
+                <small style="color: var(--gris-fonce); margin-top: 5px; display: block;">Sera répartie sur 6 mois</small>
             </div>
 
             <button class="action-btn primary" onclick="closeModal('revenus')" style="width: 100%; margin-top: 20px;">
@@ -737,12 +831,12 @@
     <div id="modal-aides" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title">🎁 Mes aides</h2>
+                <h2 class="modal-title">🤝 Mes aides</h2>
                 <button class="modal-close" onclick="closeModal('aides')">×</button>
             </div>
 
-            <p style="color: #4A5568; margin-bottom: 20px; line-height: 1.6;">
-                <strong>Coche les aides que tu peux obtenir.</strong> Ton conseiller Mission Locale t'aide à monter les dossiers !
+            <p style="color: var(--gris-fonce); margin-bottom: 20px; line-height: 1.7;">
+                <strong>Coche les aides que tu peux obtenir.</strong> Ton conseiller Mission Locale t'aide à monter les dossiers ! Tu peux ajuster les montants selon ta situation.
             </p>
 
             <!-- CEJ -->
@@ -753,7 +847,7 @@
                         <div class="input-wrapper" style="max-width: 200px;">
                             <input type="number" id="montant_cej" value="500" min="0" max="1000" step="50" 
                                    style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="updateAideMontant('cej'); calculate()" 
+                                   oninput="calculate()" 
                                    onclick="event.stopPropagation()">
                             <span class="input-addon" style="font-size: 0.9em;">€/mois</span>
                         </div>
@@ -770,7 +864,7 @@
                         <div class="input-wrapper" style="max-width: 200px;">
                             <input type="number" id="montant_pacea" value="200" min="0" max="500" step="50" 
                                    style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="updateAideMontant('pacea'); calculate()" 
+                                   oninput="calculate()" 
                                    onclick="event.stopPropagation()">
                             <span class="input-addon" style="font-size: 0.9em;">€/mois</span>
                         </div>
@@ -787,7 +881,7 @@
                         <div class="input-wrapper" style="max-width: 200px;">
                             <input type="number" id="montant_are" value="900" min="0" max="3000" step="50" 
                                    style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="updateAideMontant('are'); calculate()" 
+                                   oninput="calculate()" 
                                    onclick="event.stopPropagation()">
                             <span class="input-addon" style="font-size: 0.9em;">€/mois</span>
                         </div>
@@ -804,7 +898,7 @@
                         <div class="input-wrapper" style="max-width: 200px;">
                             <input type="number" id="montant_erasmus" value="250" min="0" max="500" step="50" 
                                    style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="updateAideMontant('erasmus'); calculate()" 
+                                   oninput="calculate()" 
                                    onclick="event.stopPropagation()">
                             <span class="input-addon" style="font-size: 0.9em;">€/mois</span>
                         </div>
@@ -821,7 +915,7 @@
                         <div class="input-wrapper" style="max-width: 200px;">
                             <input type="number" id="montant_region" value="100" min="0" max="300" step="25" 
                                    style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="updateAideMontant('region'); calculate()" 
+                                   oninput="calculate()" 
                                    onclick="event.stopPropagation()">
                             <span class="input-addon" style="font-size: 0.9em;">€/mois</span>
                         </div>
@@ -838,7 +932,7 @@
                         <div class="input-wrapper" style="max-width: 200px;">
                             <input type="number" id="montant_ml" value="150" min="0" max="500" step="50" 
                                    style="padding: 8px; font-size: 1.1em;" 
-                                   oninput="updateAideMontant('ml'); calculate()" 
+                                   oninput="calculate()" 
                                    onclick="event.stopPropagation()">
                             <span class="input-addon" style="font-size: 0.9em;">€ ponct.</span>
                         </div>
@@ -861,16 +955,16 @@
                 <button class="modal-close" onclick="closeModal('resultat')">×</button>
             </div>
 
-            <div style="text-align: center; padding: 30px; background: linear-gradient(135deg, var(--turquoise-doux), #26C6DA); border-radius: 20px; color: white; margin-bottom: 20px;">
-                <div style="font-size: 0.9em; font-weight: 700; margin-bottom: 10px;">RESTE À VIVRE</div>
-                <div style="font-size: 3.5em; font-weight: 900; font-family: 'Courier New', monospace;" id="modal-reste-value">0 €</div>
-                <div style="font-size: 0.9em; opacity: 0.9; margin-top: 10px;" id="modal-reste-status">par mois</div>
+            <div style="text-align: center; padding: 35px; background: linear-gradient(135deg, var(--bleu-ml), #1c7ab5); border-radius: 12px; color: white; margin-bottom: 20px;">
+                <div style="font-size: 0.95em; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1.5px;">RESTE À VIVRE</div>
+                <div style="font-size: 3.8em; font-weight: 900;" id="modal-reste-value">0 €</div>
+                <div style="font-size: 1em; opacity: 0.95; margin-top: 10px; font-weight: 600;" id="modal-reste-status">par mois</div>
             </div>
 
             <div id="advice-container"></div>
 
-            <div style="background: #F5F5F5; padding: 20px; border-radius: 15px; margin-top: 20px;">
-                <h3 style="margin-bottom: 15px; color: #2D3748;">💡 Que faire maintenant ?</h3>
+            <div style="background: var(--gris-clair); padding: 22px; border-radius: 10px; margin-top: 20px; border: 2px solid var(--gris-moyen);">
+                <h3 style="margin-bottom: 15px; color: var(--noir-ml); font-weight: 800;">💡 Que faire maintenant ?</h3>
                 <button class="action-btn primary" onclick="saveBudget()" style="width: 100%; margin-bottom: 10px;">
                     💾 Sauvegarder mon budget
                 </button>
@@ -881,16 +975,17 @@
         </div>
     </div>
 
-    <script>
-        // Update aide montant display (not needed anymore but keep for compatibility)
-        function updateAideMontant(aideId) {
-            // Montants are now directly in inputs, no need to update
-        }
+    <!-- Footer -->
+    <footer class="footer-ml">
+        <p>Mission Locale Pays Basque - Au service des jeunes de 16 à 25 ans</p>
+        <p><a href="https://www.missionlocale-paysbasque.fr" target="_blank">www.missionlocale-paysbasque.fr</a></p>
+    </footer>
 
+    <script>
         // Open/close modals
         function openModal(modalId) {
             document.getElementById('modal-' + modalId).classList.add('active');
-            calculate(); // Recalculate when opening
+            calculate();
         }
 
         function closeModal(modalId) {
@@ -918,7 +1013,7 @@
             const salaire = parseFloat(document.getElementById('salaire').value) || 0;
             const aideFamily = parseFloat(document.getElementById('aide_famille').value) || 0;
             const epargne = parseFloat(document.getElementById('epargne').value) || 0;
-            const epargneMonthly = epargne / 6; // Réparti sur 6 mois par défaut
+            const epargneMonthly = epargne / 6;
             
             const totalRevenus = salaire + aideFamily + epargneMonthly;
             
@@ -931,7 +1026,7 @@
             
             const totalDepenses = logement + alimentation + transport + telephone + loisirs;
             
-            // Get aides (from manual inputs)
+            // Get aides
             let totalAides = 0;
             
             if (document.getElementById('aide_cej').checked) {
@@ -951,7 +1046,7 @@
             }
             if (document.getElementById('aide_ml').checked) {
                 const montantML = parseFloat(document.getElementById('montant_ml').value) || 0;
-                totalAides += montantML / 3; // Ponctuel réparti sur 3 mois
+                totalAides += montantML / 3;
             }
             
             // Calculate reste
@@ -1056,17 +1151,14 @@
         // Save budget
         function saveBudget() {
             const budgetData = {
-                // Revenus
                 salaire: document.getElementById('salaire').value,
                 aide_famille: document.getElementById('aide_famille').value,
                 epargne: document.getElementById('epargne').value,
-                // Dépenses
                 logement: document.getElementById('logement').value,
                 alimentation: document.getElementById('alimentation').value,
                 transport: document.getElementById('transport').value,
                 telephone: document.getElementById('telephone').value,
                 loisirs: document.getElementById('loisirs').value,
-                // Aides (checkbox + montants)
                 aide_cej: document.getElementById('aide_cej').checked,
                 montant_cej: document.getElementById('montant_cej').value,
                 aide_pacea: document.getElementById('aide_pacea').checked,
@@ -1079,39 +1171,29 @@
                 montant_region: document.getElementById('montant_region').value,
                 aide_ml: document.getElementById('aide_ml').checked,
                 montant_ml: document.getElementById('montant_ml').value,
-                // Résultats
-                revenus: document.getElementById('display-revenus').textContent,
-                aides: document.getElementById('display-aides').textContent,
-                depenses: document.getElementById('display-depenses').textContent,
-                reste: document.getElementById('display-reste').textContent,
                 date: new Date().toLocaleDateString('fr-FR')
             };
             
-            localStorage.setItem('budget_mobilite', JSON.stringify(budgetData));
-            
+            localStorage.setItem('budget_mobilite_ml', JSON.stringify(budgetData));
             alert('✅ Budget sauvegardé !\n\nTu peux revenir plus tard, tes données seront conservées.');
         }
 
         // Load saved budget
         function loadBudget() {
-            const saved = localStorage.getItem('budget_mobilite');
+            const saved = localStorage.getItem('budget_mobilite_ml');
             if (saved) {
                 try {
                     const data = JSON.parse(saved);
                     
-                    // Restore revenus
                     if (data.salaire) document.getElementById('salaire').value = data.salaire;
                     if (data.aide_famille) document.getElementById('aide_famille').value = data.aide_famille;
                     if (data.epargne) document.getElementById('epargne').value = data.epargne;
-                    
-                    // Restore dépenses
                     if (data.logement) document.getElementById('logement').value = data.logement;
                     if (data.alimentation) document.getElementById('alimentation').value = data.alimentation;
                     if (data.transport) document.getElementById('transport').value = data.transport;
                     if (data.telephone) document.getElementById('telephone').value = data.telephone;
                     if (data.loisirs) document.getElementById('loisirs').value = data.loisirs;
                     
-                    // Restore aides
                     if (data.aide_cej !== undefined) {
                         document.getElementById('aide_cej').checked = data.aide_cej;
                         if (data.aide_cej) document.getElementById('card-cej').classList.add('active');
@@ -1158,10 +1240,8 @@
         // Reset all
         function resetAll() {
             if (confirm('Es-tu sûr·e de vouloir tout effacer ?')) {
-                // Reset inputs
                 document.querySelectorAll('input[type="number"]').forEach(input => {
                     if (input.id.startsWith('montant_')) {
-                        // Reset aide amounts to defaults
                         if (input.id === 'montant_cej') input.value = 500;
                         else if (input.id === 'montant_pacea') input.value = 200;
                         else if (input.id === 'montant_are') input.value = 900;
@@ -1173,21 +1253,16 @@
                     }
                 });
                 
-                // Uncheck aides
                 document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                     checkbox.checked = false;
                 });
                 
-                // Remove active class from aide cards
                 document.querySelectorAll('.aide-card').forEach(card => {
                     card.classList.remove('active');
                 });
                 
-                // Recalculate
                 calculate();
-                
-                // Clear saved data
-                localStorage.removeItem('budget_mobilite');
+                localStorage.removeItem('budget_mobilite_ml');
             }
         }
 
